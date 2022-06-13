@@ -1,0 +1,14 @@
+name: Maven CI with Nexus IQ
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate XML SBOM
+        uses: CycloneDX/gh-dotnet-generate-sbom@v1
+        with:
+          path: **/*.csproj
+          github-bearer-token: ${{ secrets.GITHUB_TOKEN }}
